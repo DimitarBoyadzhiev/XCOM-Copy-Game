@@ -3,11 +3,14 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
 
+    [SerializeField] private Animator unitAnimator;
+
     private Vector3 targetPosition;
 
 
     private void Update()
     {
+
         //-- Make movement more fluid and avoid weird behaviour
         float stoppingDistance = .1f;
 
@@ -17,6 +20,17 @@ public class Unit : MonoBehaviour
             Vector3 moveDirection = (targetPosition - transform.position).normalized;
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
+            // Face movement direction
+            float rotateSpeed = 10f;
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotateSpeed);
+
+            unitAnimator.SetBool("isWalking", true);
+
+        }
+        else
+        {
+            unitAnimator.SetBool("isWalking", false);
         }
 
         //--
