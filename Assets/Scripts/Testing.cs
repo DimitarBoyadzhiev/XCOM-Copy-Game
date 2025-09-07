@@ -3,10 +3,8 @@ using UnityEngine;
 public class Testubg : MonoBehaviour
 {
 
+    [SerializeField] private Unit unit;
 
-
-    
-    
     private void Start()
     {
 
@@ -14,6 +12,10 @@ public class Testubg : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            unit.GetMoveAction().GetValidActionGridPositionList();
+        }
+
     }
 }
