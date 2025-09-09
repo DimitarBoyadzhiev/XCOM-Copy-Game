@@ -12,10 +12,6 @@ public class Testubg : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            unit.GetMoveAction().GetValidActionGridPositionList();
-        }
-
+        
     }
 }
