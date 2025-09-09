@@ -63,7 +63,6 @@ public class UnitActionSystem : MonoBehaviour
                         SetBusy();
                         moveAction.Move(mouseGridPosition, ClearBusy);
                     }
-                    moveAction.Move(mouseGridPosition, ClearBusy);
                     break;
                 case SpinAction spinAction:
                     SetBusy();
