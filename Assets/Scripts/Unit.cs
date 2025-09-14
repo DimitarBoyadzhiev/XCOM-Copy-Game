@@ -18,6 +18,7 @@ public class Unit : MonoBehaviour
     private GridPosition gridPosition;
     private MoveAction moveAction;
     private SpinAction spinAction;
+    private ShootAction shootAction;
     private BaseAction[] baseActionArray;
     private HealthSystem healthSystem;
 
@@ -27,6 +28,7 @@ public class Unit : MonoBehaviour
     {
         moveAction = GetComponent<MoveAction>();
         spinAction = GetComponent<SpinAction>();
+        shootAction = GetComponent<ShootAction>();
         baseActionArray = GetComponents<BaseAction>();
         healthSystem = GetComponent<HealthSystem>();
     }
@@ -65,6 +67,11 @@ public class Unit : MonoBehaviour
         return spinAction;
     }
 
+    public ShootAction GetShootAction()
+    {
+        return shootAction;
+    }
+
     public GridPosition GetGridPosition()
     {
         return gridPosition;
@@ -82,7 +89,7 @@ public class Unit : MonoBehaviour
 
     public bool TrySpenActionPointsToTakeAction(BaseAction baseAction)
     {
-        if (CanSpendActionPointstoTakeAction(baseAction))
+        if (CanSpendActionPointsToTakeAction(baseAction))
         {
             SpendActionPoints(baseAction.GetActionPointsCost());
             return true;
@@ -93,7 +100,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public bool CanSpendActionPointstoTakeAction(BaseAction baseAction)
+    public bool CanSpendActionPointsToTakeAction(BaseAction baseAction)
     {
         if (actionPoints >= baseAction.GetActionPointsCost())
         {
@@ -145,5 +152,10 @@ public class Unit : MonoBehaviour
         Destroy(gameObject);
 
         OnAnyUnitDead?.Invoke(this, EventArgs.Empty);
+    }
+
+    public float GetHealthNormalized()
+    {
+        return healthSystem.GetHealthNormalized();
     }
 }
