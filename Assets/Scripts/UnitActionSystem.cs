@@ -35,7 +35,7 @@ public class UnitActionSystem : MonoBehaviour
 
     private void Start()
     {
-        SetSelectedUnit(null);
+        SetSelectedUnit(selectedUnit);
     }
 
     private void Update()

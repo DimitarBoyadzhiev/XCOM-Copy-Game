@@ -64,7 +64,6 @@ public class GridSystemVisual : MonoBehaviour
         LevelGrid.Instance.OnAnyUnitMovedGridPosition += LevelGrid_OnAnyUnitMovedGridPosition;
 
         UpdateGridVisual();
-        HideAllGridPosition();
     }
 
     public void HideAllGridPosition()

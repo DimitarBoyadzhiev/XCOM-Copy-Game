@@ -18,8 +18,7 @@ public class UnitActionSystemUI : MonoBehaviour
 
     private void Awake()
     {
-        actionButtonUIList = new List<ActionButtonUI>();  
-        actionPointsText.gameObject.SetActive(false);
+        actionButtonUIList = new List<ActionButtonUI>();
     }
 
 
@@ -64,7 +63,6 @@ public class UnitActionSystemUI : MonoBehaviour
         CreateUnitActionButtons();
         UpdateSelectedVisual();
         UpdateActionPoints();
-        actionPointsText.gameObject.SetActive(true);
     }
 
     private void UnitActionSystem_OnSelectedActionChanged(object sender, EventArgs e)
