@@ -90,31 +90,20 @@ public class ShootAction : BaseAction
         switch (state)
         {
             case State.Aiming:
-                if (stateTimer <= 0)
-                {
-                    state = State.Shooting;
-                    float shootingStateTime = .1f;
-                    stateTimer = shootingStateTime;
-                }
+                state = State.Shooting;
+                float shootingStateTime = .1f;
+                stateTimer = shootingStateTime;
                 break;
             case State.Shooting:
-                if (stateTimer <= 0)
-                {
-                    state = State.Cooloff;
-                    float CooloffStateTime = .5f;
-                    stateTimer = CooloffStateTime;
-                }
+                state = State.Cooloff;
+                float CooloffStateTime = .5f;
+                stateTimer = CooloffStateTime;
                 break;
             case State.Cooloff:
-                if (stateTimer <= 0)
-                {
-                    ActionComplete();
-                }
+                ActionComplete();
                 break;
         }
     }
-
-
 
     public override string GetActionName()
     {
