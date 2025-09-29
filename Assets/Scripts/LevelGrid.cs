@@ -10,7 +10,7 @@ public class LevelGrid : MonoBehaviour
 
     public event EventHandler OnAnyUnitMovedGridPosition;
 
-    [SerializeField] private Transform gridDebugObjectPrefab;
+    [SerializeField]  private Transform gridDebugObjectPrefab;
     [SerializeField]  private int width;
     [SerializeField]  private int height;
     [SerializeField]  private float cellSize;
@@ -93,14 +93,14 @@ public class LevelGrid : MonoBehaviour
     }
 
 
-    public Door GetDoorAtGridPosition(GridPosition gridPosition)
+    public IInteractable GetInteractableAtGridPosition(GridPosition gridPosition)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-        return gridObject.GetDoor();
+        return gridObject.GetInteractable();
     }
-    public void SetDoorAtGridPosition(GridPosition gridPosition, Door door)
+    public void SetInteractableAtGridPosition(GridPosition gridPosition, IInteractable interactable)
     {
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
-        gridObject.SetDoor(door);
+        gridObject.SetInteractable(interactable);
     }
 }

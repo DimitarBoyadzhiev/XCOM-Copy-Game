@@ -11,9 +11,33 @@ public class InteractSphere : MonoBehaviour, IInteractable
 
     private bool isGreen;
 
+    private Action onInteractionComplete;
+    private bool isActive;
+    private float timer;
+    private GridPosition gridPosition;
+
     private void Start()
     {
+        gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
+        LevelGrid.Instance.SetInteractableAtGridPosition(gridPosition, this);
+
         SetColorGreen();
+    }
+
+    private void Update()
+    {
+        if (!isActive)
+        {
+            return;
+        }
+
+        timer -= Time.deltaTime;
+
+        if (timer <= 0f)
+        {
+            isActive = false;
+            onInteractionComplete();
+        }
     }
 
     private void SetColorGreen()
@@ -30,6 +54,17 @@ public class InteractSphere : MonoBehaviour, IInteractable
 
     public void Interact(Action onInteractionComplete)
     {
-        throw new NotImplementedException();
+        this.onInteractionComplete = onInteractionComplete;
+        isActive = true;
+        timer = .5f;
+
+        if (isGreen)
+        {
+            SetColorRed();
+        }
+        else
+        {
+            SetColorGreen();
+        }
     }
 }

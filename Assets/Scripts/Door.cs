@@ -8,7 +8,7 @@ public class Door : MonoBehaviour, IInteractable
 
     private GridPosition gridPosition;
     private Animator animator;
-    private Action onInteractComplete;
+    private Action onInteractionComplete;
     private bool isActive;
     private float timer;
 
@@ -20,7 +20,7 @@ public class Door : MonoBehaviour, IInteractable
     private void Start()
     {
         gridPosition = LevelGrid.Instance.GetGridPosition(transform.position);
-        LevelGrid.Instance.SetDoorAtGridPosition(gridPosition, this);
+        LevelGrid.Instance.SetInteractableAtGridPosition(gridPosition, this);
 
         if (isOpen)
         {
@@ -44,13 +44,13 @@ public class Door : MonoBehaviour, IInteractable
         if (timer <= 0f)
         {
             isActive = false;
-            onInteractComplete();
+            onInteractionComplete();
         }
     }
 
     public void Interact(Action onInteractComplete)
     {
-        this.onInteractComplete = onInteractComplete;
+        this.onInteractionComplete = onInteractComplete;
         isActive = true;
         timer = .5f;
 
